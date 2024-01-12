@@ -4,17 +4,30 @@ const header = document.querySelector("header");
 const showHide = document.querySelectorAll(".show-hide");
 const answers = document.querySelectorAll(".answer");
 
-window.onload = () => {
+const chooseHeader = () => {
     if (window.innerWidth < 375) {
         header.innerHTML = mobileHeader;
     } else {
         header.innerHTML = desktopHeader;
     }
+}
+
+window.onload = () => {
+    chooseHeader();
+
+    if (window.innerWidth > 1440) {
+        window.resizeTo(1440);
+    }
+
     showHide.forEach((el, idx) => {
         el.innerHTML = showButton;
         answers[idx].style.display = "none";
     })
 }
+
+window.addEventListener("resize", () => {
+    chooseHeader();
+})
 
 showHide.forEach((el, idx) => {
     el.addEventListener("click", () => {
